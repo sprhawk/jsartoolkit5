@@ -5,12 +5,12 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped  
 
 export declare interface artoolkit {
-    public static readonly AR_TEMPLATE_MATCHING_COLOR;
-    public static readonly AR_TEMPLATE_MATCHING_MONO;
-    public static readonly AR_MATRIX_CODE_DETECTION;
-    public static readonly AR_TEMPLATE_MATCHING_COLOR_AND_MATRIX;
-    public static readonly AR_TEMPLATE_MATCHING_MONO_AND_MATRIX;
-    public readonly frameMalloc: FrameMalloc;
+    readonly AR_TEMPLATE_MATCHING_COLOR: number;
+    readonly AR_TEMPLATE_MATCHING_MONO: number;
+    readonly AR_MATRIX_CODE_DETECTION: number;
+    readonly AR_TEMPLATE_MATCHING_COLOR_AND_MATRIX: number;
+    readonly AR_TEMPLATE_MATCHING_MONO_AND_MATRIX: number;
+    readonly frameMalloc: FrameMalloc;
 }
 
 export class ARController {
@@ -54,7 +54,7 @@ export class ARController {
     debugSetup(): void;
     process(image: any): void;
     getCameraMatrix(): ArrayLike<number>;
-    detectMarker(videoNative): void;
+    detectMarker(videoNative: any): void;
     debugDraw(): void;
     getMarkerNum(): number;
     getMarker(index: number): ARMarkerInfo;
@@ -66,7 +66,7 @@ export class ARController {
      * Override the default marker width (which is 1) with the given value. This means we can only use one size of markers for now. TODO: Need to fix that later
      * @param {number} markerWidth
      */
-    setDefaultMarkerWidth(markerWidth: number);
+    setDefaultMarkerWidth(markerWidth: number): void;
 
     /**
     Converts the given 4x4 openGL matrix in the 16-element transMat array
@@ -111,7 +111,7 @@ export class ARController {
 		@param {function} onSuccess - The success callback. Called with the id of the loaded marker on a successful load.
 		@param {function} onError - The error callback. Called with the encountered error if the load fails.
 	*/
-	loadMarker(markerURL: string, onSuccess: (id: number) => void, onError: (error:any) => void);
+	loadMarker(markerURL: string, onSuccess: (id: number) => void, onError: (error:any) => void) : void;
 
 }
 
@@ -157,6 +157,7 @@ export declare interface FrameMalloc {
 export declare class ARCameraParam {
     onload(): void;
     load(cameraData: string): void;
+    constructor(src: string, onload: ()=> void, onerror: (err: Error)=> void);
 }
 
 export declare interface ARMarkerInfo {
